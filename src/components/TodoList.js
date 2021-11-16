@@ -12,17 +12,19 @@ const TodoList = ({ todos }) => {
     return (
       <li key={ id } className="list-group-item">
           <TodoListItems { ...itemProps }
-            // label={ item.label }
-            // important={ item.important }
           />
       </li>
     );
   });
 
     return (
-      <ul className="list-group todo-list">
-        { elements }
-      </ul>
+      <div className="row mt-3">
+        <div className="col-12">
+          <ul className="list-group todo-list shadow-sm">
+            { elements }
+          </ul>
+        </div>
+      </div>
     );
 }
 

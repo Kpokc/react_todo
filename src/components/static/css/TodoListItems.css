@@ -1,0 +1,24 @@
+.list-text {
+    width: 79%;
+    float: left;
+}
+
+.list-icons {
+    width: 20%;
+    float: right;
+    text-align: center;
+}
+
+.list-icons > span > i {
+    margin-right: 15px;
+    outline: solid 1px;
+    outline-offset: 3px;
+}
+
+.fa-trash-alt {
+    color: tomato;
+}
+
+.fa-exclamation-triangle {
+    color: rgb(22, 179, 231);
+}

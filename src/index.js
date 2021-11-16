@@ -14,10 +14,14 @@ const App = () => {
   ];
 
   return (
-    <div>
-      <AppHeader />
-      <SearchPanel />
-      <TodoList todos={todoData} />
+    <div className="container-fluid">
+      <div className="row mt-5">
+        <div className="col-4 bg-light p-3 border shadow-sm rounded m-auto">
+          <AppHeader />
+          <SearchPanel />
+          <TodoList todos={todoData} />
+        </div>
+      </div>
     </div>
   );
 }
