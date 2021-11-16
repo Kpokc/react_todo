@@ -1,6 +1,7 @@
 .list-text {
     width: 79%;
     float: left;
+    line-height: 35px;
 }
 
 .list-icons {
@@ -22,3 +23,7 @@
 .fa-exclamation-triangle {
     color: rgb(22, 179, 231);
 }
+
+.done {
+    text-decoration: line-through;
+  }
