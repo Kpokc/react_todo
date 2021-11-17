@@ -26,4 +26,9 @@
 
 .done {
     text-decoration: line-through;
-  }
+}
+
+.important {
+    font-weight: bold;
+    color: steelblue;
+}

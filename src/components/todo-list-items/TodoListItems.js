@@ -8,38 +8,54 @@ export default class TodoListItems extends Component{
         super();
 
         this.state = {
-            done: false
+            done: false,
+            important: false
         };
     }
 
     onLabelClick = () => {
-        this.setState({
-            done: true
+        this.setState( ( {done} ) => {
+            return {
+                done: !done
+            }
+        });
+    };
+
+    onMarkImportant = () => {
+        this.setState( ({ important }) => {
+            return {
+                important: !important
+            }   
         });
     };
 
     render () {
 
-        // To get access to all function props
-        const { label, important = false } = this.props;
-        const { done } = this.state;
+        // destructuring
+        // Access to itemprops from ToDoList.js
+        const { label, onDeleted } = this.props;
 
+        // Access to this.state variables
+        const { done, important } = this.state;
+
+        // Standard className
         let classNames = 'todo-list-item';
+
+        // added done className
         if (done) {
             classNames += ' done';
         }
-    
-        const style = {
-            color: important ? 'tomato' : 'black',
-            fontWeight: important ? 'bold' : 'normal'
-        };
+
+        // added important className
+        if (important) {
+            classNames += ' important';
+        }
     
         return (
           <div className="row">
               <div className="col-12">
                   <div className="list-text"> 
                       <span 
-                          style={ style }
                           className={ classNames }
                           onClick={ this.onLabelClick }>
                           { label }
@@ -47,8 +63,16 @@ export default class TodoListItems extends Component{
                   </div>
                   <div className="list-icons">
                       <span>
-                        <button type="button" className="btn"><i className="fas fa-trash-alt"></i></button>
-                        <button type="button" className="btn"><i className="fas fa-exclamation-triangle"></i></button>
+                            <button type="button" 
+                                    className="btn"
+                                    onClick={ onDeleted }>
+                                        <i className="fas fa-trash-alt"></i>
+                            </button>
+                            <button type="button" 
+                                    className="btn"
+                                    onClick={ this.onMarkImportant }>
+                                        <i className="fas fa-exclamation-triangle"></i>
+                            </button>
                       </span>
                   </div>
                 </div>
