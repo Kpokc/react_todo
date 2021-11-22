@@ -9,7 +9,7 @@ import AddItemForm from '../add-item-form';
 
 export default class App extends Component {
 
-  maxId = 100;
+  maxId = 200;
 
   state = {
     todoData: [

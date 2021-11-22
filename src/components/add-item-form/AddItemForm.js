@@ -4,15 +4,32 @@ import './AddItemForm.css';
 
 export default class AddItemForm extends Component {
 
+    state = {
+        userInput: ""
+    }
+
+    handleChange=(elm)=>{
+        this.setState( { userInput:elm.target.value } );
+    }
+
     render (){
         return(
-            <div className="add-item-form">
-                <div className="btn-group float-right">
-                    <button type="button" 
-                            className="btn btn-outline-secondary btn-sm m-1 main-btn shadow-sm mt-3"
-                            onClick={ () => this.props.onAddItem('Hello World') }>Add</button>
+            <div className="row">
+                <div className="col-12">
+                    <div className="add-item-form">
+                        <input  type="text" 
+                            className="mt-3 w-50"
+                            onChange={ this.handleChange }
+                            />
+                        <div className="btn-group float-right">
+                            <button type="button" 
+                                    className="btn btn-outline-secondary btn-sm m-1 main-btn shadow-sm mt-3"
+                                    onClick={ () => this.props.onAddItem( this.state.userInput) }>Add</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         )
     }
 }
