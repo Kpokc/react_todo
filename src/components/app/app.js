@@ -13,11 +13,20 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      { label: 'Drink Coffee', important: false, id: 1 },
-      { label: 'Make new App', important: true, id: 2 },
-      { label: 'Go for fag', important: false,  id: 3 }
+      this.createTodoItem('Drink Coffee'),
+      this.createTodoItem('Make new App'),
+      this.createTodoItem('Go for fag')
     ]
   };
+
+  createTodoItem(label) {
+    return {
+      label,
+      important: false,
+      done: false,
+      id: this.maxId++
+    }
+  }
 
   deleteItem = (id) => {
     this.setState(( { todoData } ) => {
@@ -37,11 +46,7 @@ export default class App extends Component {
 
   addItem = (text) => {
     // Gen ID
-    const newItem = {
-      label: text,
-      important: false,
-      id: this.maxId++
-    };
+    const newItem = this.createTodoItem(text);
 
     // Add into array
     this.setState(({ todoData }) => {
@@ -55,7 +60,15 @@ export default class App extends Component {
         todoData: newArray
       };
     });
-    
+
+  };
+
+  onToggleImportant = (id) => {
+    console.log(id);
+  };
+
+  onToggleDone = (id) => {
+    console.log(id);
   };
 
   render () {
@@ -67,7 +80,10 @@ export default class App extends Component {
             <SearchPanel />
             <TodoList 
               todos={ this.state.todoData }  
-              onDeleted={ this.deleteItem } />
+              onDeleted={ this.deleteItem }
+              onToggleImportant={ this.onToggleImportant}
+              onToggleDone={ this.onToggleDone } 
+              />
             <AddItemForm onAddItem={ this.addItem }/>
           </div>
         </div>

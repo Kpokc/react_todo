@@ -4,39 +4,15 @@ import './TodoListItems.css'
 
 export default class TodoListItems extends Component{
 
-    constructor() {
-        super();
-
-        this.state = {
-            done: false,
-            important: false
-        };
-    }
-
-    onLabelClick = () => {
-        this.setState( ( {done} ) => {
-            return {
-                done: !done
-            }
-        });
-    };
-
-    onMarkImportant = () => {
-        this.setState( ({ important }) => {
-            return {
-                important: !important
-            }   
-        });
-    };
-
     render () {
 
         // destructuring
         // Access to itemprops from ToDoList.js
-        const { label, onDeleted } = this.props;
-
-        // Access to this.state variables
-        const { done, important } = this.state;
+        const { label, onDeleted,
+                onToggleImportant,
+                onToggleDone,
+                important,
+                done } = this.props;
 
         // Standard className
         let classNames = 'todo-list-item';
@@ -57,7 +33,8 @@ export default class TodoListItems extends Component{
                   <div className="list-text"> 
                       <span 
                           className={ classNames }
-                          onClick={ this.onLabelClick }>
+                          onClick={ onToggleDone }
+                          >
                           { label }
                       </span>
                   </div>
@@ -70,7 +47,8 @@ export default class TodoListItems extends Component{
                             </button>
                             <button type="button" 
                                     className="btn"
-                                    onClick={ this.onMarkImportant }>
+                                    onClick={ onToggleImportant }
+                                    >
                                         <i className="fas fa-exclamation-triangle"></i>
                             </button>
                       </span>
