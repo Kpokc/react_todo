@@ -5,8 +5,11 @@ import './app.css'
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
+import AddItemForm from '../add-item-form';
 
 export default class App extends Component {
+
+  maxId = 100;
 
   state = {
     todoData: [
@@ -32,6 +35,29 @@ export default class App extends Component {
     });
   };
 
+  addItem = (text) => {
+    // Gen ID
+    const newItem = {
+      label: text,
+      important: false,
+      id: this.maxId++
+    };
+
+    // Add into array
+    this.setState(({ todoData }) => {
+
+      const newArray = [
+        ...todoData, 
+        newItem
+      ];
+  
+      return {
+        todoData: newArray
+      };
+    });
+    
+  };
+
   render () {
     return (
       <div className="container-fluid">
@@ -42,6 +68,7 @@ export default class App extends Component {
             <TodoList 
               todos={ this.state.todoData }  
               onDeleted={ this.deleteItem } />
+            <AddItemForm onAddItem={ this.addItem }/>
           </div>
         </div>
       </div>
