@@ -3,7 +3,7 @@ import React from "react";
 import './AppHeader.css'
 
 
-const AppHeader = () => {
+const AppHeader = ({ todo, done }) => {
 
     return (
       <div className="row d-flex align-items-center">
@@ -13,7 +13,7 @@ const AppHeader = () => {
         <div className="col-6">
           <span className="overall-data">
             <strong>
-              1 more to do, 3 done
+              { todo } more to do, { done } done
             </strong>
           </span>
         </div>

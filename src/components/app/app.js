@@ -68,21 +68,23 @@ export default class App extends Component {
     
 
   };
+
+  togglePropData(arr, id, propName){
+
+    arr.map((item) => {
+      if (item.id === id){
+        item[propName] = !item[propName];
+      }
+    });
+
+    return arr;
+  }
   
   onToggleDone = (id) => {
 
     this.setState(( { todoData } ) => {
-
-      const updatedData = todoData;
-
-      updatedData.map((item) => {
-        if (item.id === id){
-          item.done = !item.done;
-        }
-      });
-
       return {
-        todoData: updatedData
+        todoData: this.togglePropData(todoData, id, 'done')
       };
     });
     
@@ -90,27 +92,26 @@ export default class App extends Component {
   
   onToggleImportant = (id) => {
     this.setState(( { todoData } ) => {
-      const updatedData = todoData;
-
-      updatedData.map((item) => {
-        if (item.id === id){
-          item.important = !item.important;
-        }
-      });
 
       return {
-        todoData: updatedData
+        todoData: this.togglePropData(todoData, id, 'important')
       };
     });
+
   };
 
 
   render () {
+
+    const doneCount = this.state.todoData.filter((el) => el.done).length;
+    const toDoCount = this.state.todoData.length - doneCount;
+
     return (
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-4 bg-light p-3 border shadow-sm rounded m-auto">
-            <AppHeader />
+            {/* Vars pass to AppHeader */}
+            <AppHeader todo={toDoCount} done={doneCount} />
             <SearchPanel />
             <TodoList 
               todos={ this.state.todoData }  
