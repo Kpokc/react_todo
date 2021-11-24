@@ -9,7 +9,7 @@ import AddItemForm from '../add-item-form';
 
 export default class App extends Component {
 
-  maxId = 200;
+  maxId = 100;
 
   state = {
     todoData: [
@@ -64,11 +64,38 @@ export default class App extends Component {
   };
   
   onToggleDone = (id) => {
-    console.log(id);
+
+    this.setState(( { todoData } ) => {
+      
+      const updatedData = todoData;
+
+      updatedData.map((item) => {
+        if (item.id === id){
+          item.done = !item.done;
+        }
+      });
+
+      return {
+        todoData: updatedData
+      };
+    });
+    
   };
   
   onToggleImportant = (id) => {
-    console.log(id);
+    this.setState(( { todoData } ) => {
+      const updatedData = todoData;
+
+      updatedData.map((item) => {
+        if (item.id === id){
+          item.important = !item.important;
+        }
+      });
+
+      return {
+        todoData: updatedData
+      };
+    });
   };
 
 
