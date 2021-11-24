@@ -45,28 +45,34 @@ export default class App extends Component {
   };
 
   addItem = (text) => {
-    // Gen ID
-    const newItem = this.createTodoItem(text);
 
-    // Add into array
-    this.setState(({ todoData }) => {
+    if (text != "" ){
+      	// Gen ID
+      const newItem = this.createTodoItem(text);
 
-      const newArray = [
-        ...todoData, 
-        newItem
-      ];
-  
-      return {
-        todoData: newArray
-      };
-    });
+      // Add into array
+      this.setState(({ todoData }) => {
+
+        const newArray = [
+          ...todoData, 
+          newItem
+        ];
+    
+        return {
+          todoData: newArray
+        };
+      });
+    } else {
+      alert("Please add a todo note!");
+    }
+    
 
   };
   
   onToggleDone = (id) => {
 
     this.setState(( { todoData } ) => {
-      
+
       const updatedData = todoData;
 
       updatedData.map((item) => {
