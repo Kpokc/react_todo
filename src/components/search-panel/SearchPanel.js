@@ -1,21 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 
 import ItemStatusFilter from "../item-status-filter";
 
 import './SearchPanel.css'
 
-const SearchPanel = () => {
+export default class SearchPanel extends Component {
+
+  state = {
+    term: ''
+  }
+
+  onSearchChange = (e) => {
+    this.setState({ term:e.target.value });
+    this.props.onSearchChange(e.target.value);
+  };
   
+  render () {
     return (
       <div className="row d-flex align-items-center">
         <div className="col-6">
-          <input placeholder="search" className="w-100" />
+          <input placeholder="search" 
+                 className="w-100" 
+                 value={ this.state.term } 
+                 onChange={ this.onSearchChange } />
         </div>
         <div className="col-6">
             <ItemStatusFilter />
         </div>
       </div>
     );
+  }
 }
-
-export default SearchPanel;
