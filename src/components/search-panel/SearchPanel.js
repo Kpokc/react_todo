@@ -16,16 +16,19 @@ export default class SearchPanel extends Component {
   };
   
   render () {
+
+    const { filter, onSearchChange } = this.props;
+
     return (
       <div className="row d-flex align-items-center">
         <div className="col-6">
           <input placeholder="search" 
                  className="w-100" 
-                 value={ this.state.term } 
-                 onChange={ this.onSearchChange } />
+                 value={ this.state.term } />
         </div>
         <div className="col-6">
-            <ItemStatusFilter />
+            <ItemStatusFilter 
+              filter={filter} />
         </div>
       </div>
     );
