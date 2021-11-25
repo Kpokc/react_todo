@@ -10,24 +10,33 @@ export default class AddItemForm extends Component {
 
     handleChange=(elm)=>{
         this.setState( { userInput:elm.target.value } );
-        console.log(elm)
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.onAddItem( this.state.userInput );
+        this.setState({
+            userInput: ""
+        });
     }
 
     render (){
         return(
             <div className="row">
                 <div className="col-12">
-                    <div className="add-item-form">
-                        <input  type="text" 
-                            className="mt-3 w-50"
+                    <form className="add-item-form d-flex mt-3"
+                          onSubmit={this.onSubmit}>
+                        <input  type="text"
+                            value={ this.state.userInput }
+                            className="form-control"
                             onChange={ this.handleChange }
+                            placeholder="Add your note here!"
                             />
-                        <div className="btn-group float-right">
-                            <button type="button" 
-                                    className="btn btn-outline-secondary btn-sm m-1 main-btn shadow-sm mt-3"
-                                    onClick={ () => this.props.onAddItem( this.state.userInput ) }>Add</button>
-                        </div>
-                    </div>
+                        <button type="submit" 
+                                className="btn btn-outline-secondary btn-sm m-1 main-btn shadow-sm">
+                            Add
+                        </button>
+                    </form>
                 </div>
             </div>
             
